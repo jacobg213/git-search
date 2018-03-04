@@ -8,6 +8,12 @@ use App\Domain\RequestInterface\RequestInterface;
 
 class Gitlab extends RequestInterface
 {
+    /**
+     * Send a search request to the GitLab's API and return structured data.
+     *
+     * @param Request $request
+     * @return \App\Domain\RequestInterface\ResponseStructure
+     */
     public function makeRequest(Request $request)
     {
         $searchResponse = $this->httpClient->get('https://gitlab.com/api/v4/projects', [
@@ -29,6 +35,12 @@ class Gitlab extends RequestInterface
         return $this->buildResponseData($request, $repositories);
     }
 
+    /**
+     * Structure the repository data to make it universal.
+     *
+     * @param $searchRequestData
+     * @return array
+     */
     protected function structureRepositoryData($searchRequestData)
     {
         return [
@@ -43,7 +55,12 @@ class Gitlab extends RequestInterface
         ];
     }
 
-    public function setHostSpecificRequestParameters(Request $request)
+    /**
+     * Validate or set GitLab's specific request parameters.
+     *
+     * @param Request $request
+     */
+    public function setAndValidateHostSpecificRequestParameters(Request $request)
     {
         if(!$request->has('sortBy'))
         {

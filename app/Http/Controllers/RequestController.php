@@ -6,6 +6,13 @@ use Illuminate\Http\Request;
 
 class RequestController extends Controller
 {
+    /**
+     * Send a request to the specified Git host.
+     * Return universally structured search results.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function search(Request $request)
     {
         $this->checkBaseRequestParameters($request);
@@ -13,7 +20,7 @@ class RequestController extends Controller
 
         $hostClass = 'App\Domain\GitHosts\\' . $request->provider;
         $host = new $hostClass;
-        $host->setHostSpecificRequestParameters($request);
+        $host->setAndValidateHostSpecificRequestParameters($request);
 
         $this->validate($request, [
             'term' => 'required|string',
@@ -28,6 +35,12 @@ class RequestController extends Controller
         return response()->json($data);
     }
 
+    /**
+     * Check if the pagination and order parameters are within the request.
+     * Set the parameters to the defaults if not present.
+     *
+     * @param $request
+     */
     private function checkBaseRequestParameters($request)
     {
         if(!$request->has('per_page'))

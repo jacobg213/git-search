@@ -15,7 +15,7 @@ class ExampleTest extends TestCase
         $this->get('/');
 
         $this->assertEquals(
-            $this->app->version(), $this->response->getContent()
+            'Welcome to the unified Git search API.', $this->response->getContent()
         );
     }
 }

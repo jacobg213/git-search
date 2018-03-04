@@ -12,7 +12,7 @@
 */
 
 $router->get('/', function () use ($router) {
-    return $router->app->version();
+    return response('Welcome to the unified Git search API.', 200);
 });
 
 $router->get('search', [

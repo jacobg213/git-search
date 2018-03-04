@@ -6,6 +6,17 @@ class Repository
 {
     public $name, $full_name, $description, $author, $rating, $url, $created_at, $updated_at;
 
+    /**
+     * Repository constructor.
+     * @param string $name
+     * @param string $full_name
+     * @param string $description
+     * @param string $author
+     * @param int $rating
+     * @param string $url
+     * @param string $created_at
+     * @param string $updated_at
+     */
     public function __construct(
         string $name,
         string $full_name,

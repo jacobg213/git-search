@@ -8,6 +8,12 @@ use App\Domain\RequestInterface\RequestInterface;
 
 class Bitbucket extends RequestInterface
 {
+    /**
+     * Send a search request to the Bitbucket's API and return structured data.
+     *
+     * @param Request $request
+     * @return \App\Domain\RequestInterface\ResponseStructure
+     */
     public function makeRequest(Request $request)
     {
         if($request->order === 'desc')
@@ -30,6 +36,12 @@ class Bitbucket extends RequestInterface
         return $this->buildResponseData($request, $repositories);
     }
 
+    /**
+     * Structure the repository data to make it universal.
+     *
+     * @param $searchRequestData
+     * @return array
+     */
     protected function structureRepositoryData($searchRequestData)
     {
         return [
@@ -44,7 +56,12 @@ class Bitbucket extends RequestInterface
         ];
     }
 
-    public function setHostSpecificRequestParameters(Request $request)
+    /**
+     * Validate or set Bitbucket's specific request parameters.
+     *
+     * @param Request $request
+     */
+    public function setAndValidateHostSpecificRequestParameters(Request $request)
     {
         if($request->provider === 'Bitbucket')
         {

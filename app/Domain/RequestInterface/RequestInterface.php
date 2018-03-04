@@ -30,8 +30,10 @@ abstract class RequestInterface
      * for each repository found and return
      * the buildResponseData function.
      *
+     * This method is called by the RequestController.
+     *
      * @access public
-     * @param Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      */
     abstract public function makeRequest(Request $request);
 
@@ -43,18 +45,19 @@ abstract class RequestInterface
      *
      * @access protected
      * @param $searchRequestData
-     * @return void
+     * @return array
      */
     abstract protected function structureRepositoryData($searchRequestData);
 
     /**
-     * Set any required request parameters specific for your Git host.
+     * Set and validate any required request
+     * parameters specific for your Git host.
      *
      * @access public
      * @param Request $request
      * @return void
      */
-    abstract public function setHostSpecificRequestParameters(Request $request);
+    abstract public function setAndValidateHostSpecificRequestParameters(Request $request);
 
     /**
      * Structure the data to make it ready for the final response.

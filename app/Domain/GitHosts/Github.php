@@ -8,6 +8,12 @@ use App\Domain\RequestInterface\RequestInterface;
 
 class Github extends RequestInterface
 {
+    /**
+     * Send a search request to the GitHub's API and return structured data.
+     *
+     * @param Request $request
+     * @return \App\Domain\RequestInterface\ResponseStructure
+     */
     public function makeRequest(Request $request)
     {
         $searchResponse = $this->httpClient->get('https://api.github.com/search/repositories', [
@@ -31,6 +37,12 @@ class Github extends RequestInterface
         return $this->buildResponseData($request, $repositories);
     }
 
+    /**
+     * Structure the repository data to make it universal.
+     *
+     * @param $searchRequestData
+     * @return array
+     */
     protected function structureRepositoryData($searchRequestData)
     {
         return [
@@ -45,7 +57,12 @@ class Github extends RequestInterface
         ];
     }
 
-    public function setHostSpecificRequestParameters(Request $request)
+    /**
+     * Validate or set GitHub's specific request parameters.
+     *
+     * @param Request $request
+     */
+    public function setAndValidateHostSpecificRequestParameters(Request $request)
     {
         if(!$request->has('sortBy'))
         {
