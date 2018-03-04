@@ -21,7 +21,7 @@ class Gitlab extends RequestInterface
                 'search' => $request->term,
                 'order_by' => $request->sortBy,
                 'sort' => $request->order,
-                'per_page' => $request->per_page,
+                'per_page' => $request->perPage,
                 'page' => $request->page
             ]
         ]);

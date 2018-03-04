@@ -26,7 +26,7 @@ class RequestController extends Controller
             'term' => 'required|string',
             'sortBy' => 'required',
             'order' => 'required|in:asc,desc',
-            'per_page' => 'nullable|integer|max:100',
+            'perPage' => 'nullable|integer|max:100',
             'page' => 'nullable|integer'
         ]);
 
@@ -43,9 +43,9 @@ class RequestController extends Controller
      */
     private function checkBaseRequestParameters($request)
     {
-        if(!$request->has('per_page'))
+        if(!$request->has('perPage'))
         {
-            $request['per_page'] = 25;
+            $request['perPage'] = 25;
         }
         if(!$request->has('page'))
         {

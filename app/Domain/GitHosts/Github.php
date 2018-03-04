@@ -21,7 +21,7 @@ class Github extends RequestInterface
                 'q' => $request->term,
                 'sort' => $request->sortBy,
                 'order' => $request->order,
-                'per_page' => $request->per_page,
+                'per_page' => $request->perPage,
                 'page' => $request->page
             ]
         ]);

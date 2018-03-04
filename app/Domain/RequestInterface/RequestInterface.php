@@ -83,7 +83,7 @@ abstract class RequestInterface
         }
 
         return new ResponseStructure(
-            $request->per_page,
+            $request->perPage,
             $request->page,
             $request->sortBy,
             $request->order,

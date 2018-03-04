@@ -22,7 +22,7 @@ class Bitbucket extends RequestInterface
         }
 
         $searchResponse = $this->httpClient->get(
-            "https://api.bitbucket.org/2.0/repositories/{$request->username}?page=$request->page&pagelen={$request->per_page}&q=(name~\"{$request->term}\" OR description~\"{$request->term}\")&sort={$request->sortBy}"
+            "https://api.bitbucket.org/2.0/repositories/{$request->username}?page=$request->page&pagelen={$request->perPage}&q=(name~\"{$request->term}\" OR description~\"{$request->term}\")&sort={$request->sortBy}"
         );
 
         $this->total = json_decode($searchResponse->getBody())->size;
